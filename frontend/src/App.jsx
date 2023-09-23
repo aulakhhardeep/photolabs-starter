@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PhotoListItem from './components/PhotoListItem';
+import PhotoFavButton from 'components/PhotoFavButton';
 import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
@@ -19,8 +20,14 @@ const App = () => {
   
   const photoComponents = [];
   for (let i = 0; i < 3; i++) {
-    photoComponents.push(<PhotoListItem key={i} data={sampleDataForPhotoListItem} />);
-  }
+    photoComponents.push(
+    <div key={i}>
+      <PhotoListItem data={sampleDataForPhotoListItem} />
+      <PhotoFavButton />
+    </div>
+  );
+}
+
 
   return (
     <div className="App">
