@@ -22,8 +22,9 @@ const App = () => {
   for (let i = 0; i < 3; i++) {
     photoComponents.push(
     <div key={i}>
-      <PhotoListItem data={sampleDataForPhotoListItem} />
       <PhotoFavButton />
+      <PhotoListItem data={sampleDataForPhotoListItem} />
+      
     </div>
   );
 }
