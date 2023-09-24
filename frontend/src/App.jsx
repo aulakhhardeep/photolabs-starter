@@ -1,10 +1,11 @@
 import React from 'react';
 
-//import PhotoListItem from './components/PhotoListItem';
 import PhotoList from 'components/PhotoList';
-//import PhotoFavButton from 'components/PhotoFavButton';
+import PhotoFavButton from 'components/PhotoFavButton';
 import './App.scss';
-import TopicListItem from 'components/TopicListItem';
+//import TopicListItem from 'components/TopicListItem';
+import TopicList from 'components/TopicList';
+
 
 
 // Note: Rendering a single component to build components in isolation
@@ -16,9 +17,12 @@ const App = () => {
   };
   return (
     <div className="App">
-      <TopicListItem data={sampleDataForTopicListItem}/>
-      {/* { Array.from(Array(3)).map((_, index) => <PhotoListItem key={index}/>) } */}
+      {/*{Array.from(Array(3)).map((_, index) => (
+        <TopicListItem key={index} data={sampleDataForTopicListItem} />
+      ))} */}
+      <TopicList />
       <PhotoList />
+      <PhotoFavButton />
 
     </div>
   );

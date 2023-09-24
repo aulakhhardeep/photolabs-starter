@@ -6,7 +6,7 @@ const TopicListItem = (props) => {
   const { data } = props;
   return (
     <div className="topic-list__item">
-      <span>{data.label}</span>
+      <span>{data.title}</span>
     </div>
   );
 };
