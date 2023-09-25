@@ -1,19 +1,16 @@
 import React from 'react';
-import './App.scss';
+
 import HomeRoute from 'components/HomeRoute';
+import photos from './mocks/photos';
+import topics from './mocks/topics';
 
-
+import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const sampleDataForTopicListItem = {
-    id: "1",
-    slug: "topic-1",
-    label: "Nature",
-  };
   return (
     <div className="App">
-     <HomeRoute />
+     <HomeRoute photos={photos} topics={topics} />
       {/*{Array.from(Array(3)).map((_, index) => (
         <TopicListItem key={index} data={sampleDataForTopicListItem} />
       ))} */}
