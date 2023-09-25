@@ -1,6 +1,4 @@
 import React from 'react';
-
-import PhotoFavButton from 'components/PhotoFavButton';
 import './App.scss';
 import HomeRoute from 'components/HomeRoute';
 
@@ -19,7 +17,6 @@ const App = () => {
       {/*{Array.from(Array(3)).map((_, index) => (
         <TopicListItem key={index} data={sampleDataForTopicListItem} />
       ))} */}
-      <PhotoFavButton />
 
     </div>
   );
