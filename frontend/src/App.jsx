@@ -1,10 +1,8 @@
 import React from 'react';
 
-import PhotoList from 'components/PhotoList';
 import PhotoFavButton from 'components/PhotoFavButton';
 import './App.scss';
-//import TopicListItem from 'components/TopicListItem';
-import TopicList from 'components/TopicList';
+import HomeRoute from 'components/HomeRoute';
 
 
 
@@ -17,11 +15,10 @@ const App = () => {
   };
   return (
     <div className="App">
+     <HomeRoute />
       {/*{Array.from(Array(3)).map((_, index) => (
         <TopicListItem key={index} data={sampleDataForTopicListItem} />
       ))} */}
-      <TopicList />
-      <PhotoList />
       <PhotoFavButton />
 
     </div>
