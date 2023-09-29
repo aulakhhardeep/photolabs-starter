@@ -3,10 +3,11 @@ import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoListItem.scss";
 
 const PhotoListItem = (props) => {
-  const { data } = props;
+  console.log(props);
+  const { data, toggleFavorite, photoId} = props;
   return (
     <div className="photo-list__item">
-      <PhotoFavButton />
+      <PhotoFavButton toggleFavorite={toggleFavorite} photoId={data.id}/>
       <img src={data.urls.regular} alt="Sample" className="photo-list__image" />
       <div className="photo-list__user-details">
       <img src={data.user.profile} alt="profile-pic" className="photo-list__user-profile" />
