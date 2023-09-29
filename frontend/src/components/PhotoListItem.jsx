@@ -8,9 +8,13 @@ const PhotoListItem = (props) => {
     <div className="photo-list__item">
       <PhotoFavButton />
       <img src={data.urls.regular} alt="Sample" className="photo-list__image" />
+      <div className="photo-list__user-details">
       <img src={data.user.profile} alt="profile-pic" className="photo-list__user-profile" />
-      <h2 className="photo-list__user-info">{data.user.username}</h2>
+      <div className="photo-list__user-info">
+      <h2>{data.user.username}</h2>
       <p className="photo-list__user-location">{`${data.location.city}, ${data.location.country}`}</p>
+      </div>
+      </div>
     </div>
   );
 };
