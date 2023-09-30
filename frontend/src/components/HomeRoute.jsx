@@ -19,11 +19,14 @@ const HomeRoute = ({ photos, topics }) => {
     });
     //console.log(`Photo ${photoId} is now ${isFavorite ? 'not ' : ''}a favorite.`);
   }
-
+console.log("Favphotos",favoritePhotos);
   return (
     <div className="home-route">
       <TopNavigation topics={topics}/>
-      <PhotoList photos={photos} toggleFavorite={toggleFavorite} favoritePhotos={favoritePhotos} />
+      <PhotoList photos={photos} 
+      toggleFavorite={toggleFavorite} 
+      favoritePhotos={favoritePhotos} 
+      />
     </div>
   )
 }
