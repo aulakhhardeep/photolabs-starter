@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 
 import HomeRoute from 'components/HomeRoute';
 import photos from './mocks/photos';
@@ -9,13 +10,35 @@ import './App.scss';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
+  const [favoritePhotos, setFavoritePhotos] = useState([]); // State to keep track of favorite photos
+
+  const toggleFavorite = (photoId) => {
+    setFavoritePhotos(prevPhotos => {
+      if (favoritePhotos.includes(photoId)) {
+       
+        return prevPhotos.filter(id => id !== photoId);
+      } else {
+       
+        return [...prevPhotos, photoId];
+      }
+    });
+   
+  }
+  const [displayModal, setDisplayModal] = useState(false);
   return (
     <div className="App">
-     <HomeRoute photos={photos} topics={topics} />
-     <PhotoDetailsModal />
-      {/*{Array.from(Array(3)).map((_, index) => (
-        <TopicListItem key={index} data={sampleDataForTopicListItem} />
-      ))} */}
+     <HomeRoute 
+      photos={photos} 
+      topics={topics} 
+      setDisplayModal={setDisplayModal} 
+      favoritePhotos={favoritePhotos} 
+      toggleFavorite={toggleFavorite}/>
+
+     {displayModal && <PhotoDetailsModal 
+      selectedPhoto={displayModal} 
+      setDisplayModal={setDisplayModal}
+      favoritePhotos={favoritePhotos} 
+      toggleFavorite={toggleFavorite} />}
 
     </div>
   );

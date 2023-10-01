@@ -3,22 +3,41 @@ import { useState } from 'react';
 
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
+import PhotoList from 'components/PhotoList';
 
-const PhotoDetailsModal = () => {
-  const [modalOpen, setModalOpen] = useState(true);
+const PhotoDetailsModal = ({selectedPhoto, setDisplayModal, favoritePhotos, toggleFavorite}) => {
+ 
   const handleClose = () => {
-    setModalOpen(false);
-
+    setDisplayModal(false);
   }
-
+  const similarPhotos = Object.values(selectedPhoto.similar_photos);
+  //console.log('***:-', selectedPhoto);
   return (
-    modalOpen && (
-      <div className={`photo-details-modal${modalOpen ? ' open' : ''}`}>
-          <button className="photo-details-modal__close-button" onClick={handleClose}>
-              <img src={closeSymbol} alt="close symbol" />
-          </button>  
+    <div className='photo-details-modal'>
+      <button className="photo-details-modal__close-button" onClick={handleClose}>
+        <img src={closeSymbol} alt="close symbol" />
+      </button>
+      <div className='photo-details-modal__images'>
+        <img className="photo-details-modal__image" src={selectedPhoto.urls.regular} alt="Selected" />
+          <div className='photo-details-modal__photographer-details'>
+            <img className='photo-details-modal__photographer-profile' src={selectedPhoto.user.profile} />
+            <div className='photo-details-modal__photographer-info'>{selectedPhoto.user.name}
+              <div className='photo-details-modal__photographer-location'>
+               {selectedPhoto.location.city}, {selectedPhoto.location.country}
+              </div>
+            </div>
+          </div>
       </div>
-    )
+      <div className='photo-details-modal__header'>Similar Photos</div>
+      <div className='photo-details-modal__images'>
+        <PhotoList 
+        photos={similarPhotos}
+        favoritePhotos={favoritePhotos} 
+        toggleFavorite={toggleFavorite}
+        setDisplayModal={()=>{}}
+        />
+      </div>
+   </div>
   )
 };
 
