@@ -8,7 +8,7 @@ const PhotoFavButton = ({ photoId, toggleFavorite, isFavorite }) => {
   const handleIconClick = () => {
     toggleFavorite(photoId, isFavorite); // Pass isFavorite to toggleFavorite function
   }
-  console.log("Hello", isFavorite);
+  //console.log("Hello", isFavorite);
 
   return (
     <div className="photo-list__fav-icon" onClick={handleIconClick}>

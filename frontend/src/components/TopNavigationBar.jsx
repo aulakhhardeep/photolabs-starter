@@ -5,12 +5,14 @@ import TopicList from './TopicList';
 import '../styles/TopNavigationBar.scss'
 
 
-const TopNavigation = ({ topics }) => {
+const TopNavigation = ({ topics, favoritePhotos}) => {
+  console.log('favoritePhotos:', favoritePhotos);
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
       <TopicList topics={topics} />
-      <FavBadge count={5} />
+      <FavBadge isFavPhotoExist={favoritePhotos.length > 0 }/>
+
     </div>
   )
 }
