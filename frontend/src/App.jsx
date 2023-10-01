@@ -1,47 +1,38 @@
 import React from 'react';
-import { useState } from 'react';
-
 import HomeRoute from 'components/HomeRoute';
-import photos from './mocks/photos';
-import topics from './mocks/topics';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import useApplicationData from 'hooks/useApplicationData';
+import photos from 'mocks/photos';
+import topics from 'mocks/topics';
 
 import './App.scss';
 
-// Note: Rendering a single component to build components in isolation
 const App = () => {
-  const [favoritePhotos, setFavoritePhotos] = useState([]); // State to keep track of favorite photos
+  const { state, updateToFavPhotoIds, onClosePhotoDetailsModal, setPhotoSelected } = useApplicationData();
 
-  const toggleFavorite = (photoId) => {
-    setFavoritePhotos(prevPhotos => {
-      if (favoritePhotos.includes(photoId)) {
-       
-        return prevPhotos.filter(id => id !== photoId);
-      } else {
-       
-        return [...prevPhotos, photoId];
-      }
-    });
-   
-  }
-  const [displayModal, setDisplayModal] = useState(false);
+  console.log('**', state.displayModal);
   return (
     <div className="App">
-     <HomeRoute 
-      photos={photos} 
-      topics={topics} 
-      setDisplayModal={setDisplayModal} 
-      favoritePhotos={favoritePhotos} 
-      toggleFavorite={toggleFavorite}/>
+      <HomeRoute
+        photos={photos}
+        topics={topics}
+        setDisplayModal= {setPhotoSelected}
+        favoritePhotos={state.favoritePhotos}
+        toggleFavorite={updateToFavPhotoIds}
+      />
 
-     {displayModal && <PhotoDetailsModal 
-      selectedPhoto={displayModal} 
-      setDisplayModal={setDisplayModal}
-      favoritePhotos={favoritePhotos} 
-      toggleFavorite={toggleFavorite} />}
-
+      {state.displayModal && (
+        
+        <PhotoDetailsModal
+          selectedPhoto={state.displayModal}
+          setDisplayModal={onClosePhotoDetailsModal}
+          favoritePhotos={state.favoritePhotos}
+          toggleFavorite={updateToFavPhotoIds}
+        />
+      )}
     </div>
   );
+  
 };
 
 export default App;

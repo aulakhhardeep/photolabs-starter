@@ -4,6 +4,7 @@ import { useState } from 'react';
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from 'components/PhotoList';
+import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = ({selectedPhoto, setDisplayModal, favoritePhotos, toggleFavorite}) => {
  
@@ -18,6 +19,11 @@ const PhotoDetailsModal = ({selectedPhoto, setDisplayModal, favoritePhotos, togg
         <img src={closeSymbol} alt="close symbol" />
       </button>
       <div className='photo-details-modal__images'>
+        <PhotoFavButton 
+        favoritePhotos={favoritePhotos} 
+        toggleFavorite={toggleFavorite}
+        photoId={selectedPhoto.id}
+        />
         <img className="photo-details-modal__image" src={selectedPhoto.urls.regular} alt="Selected" />
           <div className='photo-details-modal__photographer-details'>
             <img className='photo-details-modal__photographer-profile' src={selectedPhoto.user.profile} />
