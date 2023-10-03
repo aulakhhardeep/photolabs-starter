@@ -12,7 +12,6 @@ const PhotoDetailsModal = ({selectedPhoto, setDisplayModal, favoritePhotos, togg
     setDisplayModal(false);
   }
   const similarPhotos = Object.values(selectedPhoto.similar_photos);
-  //console.log('***:-', selectedPhoto);
   return (
     <div className='photo-details-modal'>
       <button className="photo-details-modal__close-button" onClick={handleClose}>

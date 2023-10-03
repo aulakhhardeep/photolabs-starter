@@ -9,8 +9,6 @@ import './App.scss';
 
 const App = () => {
   const { state, updateToFavPhotoIds, onClosePhotoDetailsModal, setPhotoSelected } = useApplicationData();
-
-  console.log('**', state.displayModal);
   return (
     <div className="App">
       <HomeRoute

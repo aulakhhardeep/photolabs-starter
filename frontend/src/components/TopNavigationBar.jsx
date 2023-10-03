@@ -6,7 +6,6 @@ import '../styles/TopNavigationBar.scss'
 
 
 const TopNavigation = ({ topics, favoritePhotos}) => {
-  console.log('favoritePhotos:', favoritePhotos);
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>

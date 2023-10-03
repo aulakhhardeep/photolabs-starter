@@ -1,36 +1,60 @@
-import { useState } from 'react';
-
+import { useReducer } from 'react';
 
 const useApplicationData = () => {
-  const [state, setState] = useState({
+  const INITIAL_STATE = {
     favoritePhotos: [],
     displayModal: false,
-    //selectedPhoto: null
-  });
+  };
+
+  const reducer = (state, { type, payload }) => {
+    switch (type) {
+      case 'FAVORITE_PHOTO':
+        if (state.favoritePhotos.includes(payload)) {
+          const copyOfFavorite = state.favoritePhotos.filter((id) => id !== payload);
+          return { ...state, favoritePhotos: copyOfFavorite };
+        } else {
+          return { ...state, favoritePhotos: [...state.favoritePhotos, payload] };
+        }
+
+      case 'UPDATE_MODAL':
+        return { ...state, displayModal: payload };
+
+      case 'SET_PHOTO_SELECTED':
+        return { ...state, displayModal: payload };
+
+      default:
+        return state;
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   const updateToFavPhotoIds = (photoId) => {
-     
-      if (state.favoritePhotos.includes(photoId)) {
-        const copyOfFavorite = [...state.favoritePhotos].filter((id) => id !== photoId);
-        setState({...state, favoritePhotos: copyOfFavorite})
-        return;
-      } else {
-        setState({...state, favoritePhotos: [...state.favoritePhotos, photoId]})
-      }
+    dispatch({
+      type: 'FAVORITE_PHOTO',
+      payload: photoId,
+    });
   };
 
   const onClosePhotoDetailsModal = (value) => {
-    setState({...state, displayModal: value});
+    dispatch({
+      type: 'UPDATE_MODAL',
+      payload: value,
+    });
   };
 
   const setPhotoSelected = (photo) => {
-    setState({...state, displayModal: photo})
-  }
+    dispatch({
+      type: 'SET_PHOTO_SELECTED',
+      payload: photo,
+    });
+  };
+
   return {
     state,
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
-    setPhotoSelected
+    setPhotoSelected,
   };
 };
 
