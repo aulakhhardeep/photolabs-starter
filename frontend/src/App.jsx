@@ -2,7 +2,6 @@ import React from 'react';
 import HomeRoute from 'components/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import useApplicationData from 'hooks/useApplicationData';
-import topics from 'mocks/topics';
 
 import './App.scss';
 
@@ -12,7 +11,7 @@ const App = () => {
     <div className="App">
       <HomeRoute
         photos={state.photoData}
-        topics={topics}
+        topics={state.topicData}
         setDisplayModal= {setPhotoSelected}
         favoritePhotos={state.favoritePhotos}
         toggleFavorite={updateToFavPhotoIds}
