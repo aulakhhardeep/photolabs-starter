@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute
-        photos={photos}
+        photos={state.photoData}
         topics={topics}
         setDisplayModal= {setPhotoSelected}
         favoritePhotos={state.favoritePhotos}
