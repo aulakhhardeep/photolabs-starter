@@ -13,10 +13,17 @@ const useApplicationData = () => {
     fetch('http://localhost:8001/api/photos')
     .then(res => res.json())
     .then(data => {
-      console.log("Data:",data);
       setPhotoData(data);
     })
   },[]);
+
+  useEffect(() => {
+    fetch('http://localhost:8001/api/topics')
+    .then(res => res.json())
+    .then(topic => {
+      setTopicData(topic);
+    })
+  })
 
   const reducer = (state, { type, payload }) => {
     switch (type) {
@@ -36,6 +43,9 @@ const useApplicationData = () => {
 
       case 'SET_PHOTO_DATA':
         return { ...state, photoData: payload};
+
+      case 'SET_TOPIC_DATA':
+        return{ ...state, topicData: payload};
 
       default:
         return state;
@@ -71,6 +81,13 @@ const useApplicationData = () => {
       payload: photos,
     })
   };
+
+  const setTopicData = (topics) => {
+    dispatch({
+      type: 'SET_TOPIC_DATA',
+      payload: topics,
+    })
+  }
 
   return {
     state,
