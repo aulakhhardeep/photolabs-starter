@@ -23,7 +23,7 @@ const useApplicationData = () => {
     .then(topic => {
       setTopicData(topic);
     })
-  })
+  },[]);
 
   const reducer = (state, { type, payload }) => {
     switch (type) {
