@@ -6,7 +6,7 @@ const useApplicationData = () => {
     favoritePhotos: [],
     displayModal: false,
     photoData: [],
-    topicData: []
+    topicData: [],
   };
 
   useEffect(() => {
@@ -87,6 +87,19 @@ const useApplicationData = () => {
       type: 'SET_TOPIC_DATA',
       payload: topics,
     })
+  };
+
+  const setPhotosByTopic = async (topicId) => {
+    try {
+      const response = await fetch(`http://localhost:8001/api/topics/photos/${topicId}`);
+      if (!response.ok) {
+        throw new Error('unable to fetch photos');
+      }
+      const photos = await response.json();
+      return photos
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   }
 
   return {
@@ -94,6 +107,9 @@ const useApplicationData = () => {
     updateToFavPhotoIds,
     onClosePhotoDetailsModal,
     setPhotoSelected,
+    setPhotosByTopic,
+    setTopicData,
+    setPhotoData
   };
 };
 

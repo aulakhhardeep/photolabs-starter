@@ -6,19 +6,20 @@ import useApplicationData from 'hooks/useApplicationData';
 import './App.scss';
 
 const App = () => {
-  const { state, updateToFavPhotoIds, onClosePhotoDetailsModal, setPhotoSelected } = useApplicationData();
+  const { state, updateToFavPhotoIds, onClosePhotoDetailsModal, setPhotoSelected, setPhotoData } = useApplicationData();
+
   return (
     <div className="App">
       <HomeRoute
         photos={state.photoData}
         topics={state.topicData}
-        setDisplayModal= {setPhotoSelected}
+        setDisplayModal={setPhotoSelected}
         favoritePhotos={state.favoritePhotos}
         toggleFavorite={updateToFavPhotoIds}
+        handleSetPhotos={(photos) => setPhotoData(photos)}
       />
 
       {state.displayModal && (
-        
         <PhotoDetailsModal
           selectedPhoto={state.displayModal}
           setDisplayModal={onClosePhotoDetailsModal}
@@ -28,7 +29,7 @@ const App = () => {
       )}
     </div>
   );
-  
+
 };
 
 export default App;
